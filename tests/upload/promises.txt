@@ -1,0 +1,42 @@
+Promise - 
+ # A Promise in JavaScript is an object representing future result.
+ 
+ # Basically, in promise, you commit to do some task. That task has two 
+   results - either resolved or failed.
+ 
+ # They are very useful in scenarios when a response is going to take
+   a long time, for e.g downloading an image from server, where you want 
+   to perform an operation when it is successfully downloaded.
+   So, even if it fails, you can retry it or give user an error message.
+ 
+
+  
+   Syntax - 
+   
+   let prom = new Promise()  // a promise object which has one parameter, an anonymous (fat arrow) function
+                             // which takes two variables, resolve and reject.
+                             
+    let prom = new Promise((resolve,reject) => {
+       let a = 1 + 1;
+       if(a == 2)
+       {
+         resolve("Success");
+       }
+       else
+       {
+         reject("Failed");
+       }
+    })
+    
+    //then() method - this method is only going to be called when the promise 
+                      resolves successfully.
+                      
+    //catch() method - this method is only going to be called when the promise
+                       is rejected.
+    prom.then((message) => {
+      console.log("This is the then " + message);
+    }).catch((message) => {
+      console.log("This is the catch " + message);
+    }
+    
+    

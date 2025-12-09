@@ -1,0 +1,35 @@
+# Page Object Model (POM) is a generic design pattern used in testing 
+  frameworks to achieve maintainablity and reusability.
+  
+# We can use POM with any testing framework such as playwright, selenium,
+  cypress, webdriver io,etc.
+  
+# We use this pattern to automate design application.
+  we try to replicate pages in our programming.
+  pages include login page, register page, home page, payment page,etc.
+  
+# For every page, we create a dedicated class. For e.g.
+  login page class for login page, register class for register,etc. 
+  
+# In terms of programming we create classes which contain locators
+  and also methods which performs on locators.
+  
+# Once all those pages are ready, we design a script which contain
+  test cases.
+  
+# Test cases will execute complete flow. For e.g. login page
+  then register, then home page, and so on.
+  
+# You can create methods and access them depends on what kind of
+ operations you want to perform.
+ 
+ Why we need POM?
+
+# Reusability - 
+  Once you create any method, all other related test cases or scripts can 
+  use it.You can write the code once and use it in different tests.
+  
+# Maintenanace -
+  Clean separation between test code and page specific code, becomes 
+  very easy to maintain code and reduce duplication.
+  

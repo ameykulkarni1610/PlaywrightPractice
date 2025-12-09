@@ -1,0 +1,124 @@
+✅ What Are Allure Reports? (Simple Definition)
+
+Allure Report is a beautiful, interactive HTML report for test results.
+It shows:
+
+✔ Steps
+✔ Screenshots
+✔ Logs
+✔ Test results (passed/failed/skipped)
+✔ Retries
+✔ Each test’s data (useful for data-driven testing!)
+
+It's much more visual than Playwright’s default HTML report.
+
+✅ Can You Use Allure Reports with Playwright Using Notepad++ + CMD?
+
+YES.
+You don’t need VS Code. All steps work perfectly with Notepad++ and Command Prompt.
+
+⭐ How to Add Allure Reports to Playwright (Step-by-Step for Your System)
+
+Follow these EXACT steps.
+
+STEP 1 — Install Allure CLI (Windows)
+Option 1: Install via Scoop (recommended)
+
+If you don’t have Scoop, install it:
+
+Open CMD (as normal user):
+
+powershell -command "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser"
+
+
+Then:
+
+powershell -command "iwr -useb get.scoop.sh | iex"
+
+
+Now install Allure:
+
+scoop install allure
+
+
+Done ✔
+
+STEP 2 — Install the Allure Reporter for Playwright
+
+Go to your Playwright project folder:
+
+cd E:\JavaScript\playwright
+
+
+Run:
+
+npm install -D allure-playwright
+npm install -D @playwright/test
+
+STEP 3 — Enable Allure Reporter in playwright.config.js
+
+Open your playwright.config.js and add this inside reporter: section:
+
+reporter: [
+  ['allure-playwright'],
+  ['html']
+],
+
+
+Your reporter block should look like:
+
+reporter: [
+  ['allure-playwright'],
+  ['html']
+],
+
+STEP 4 — Run Tests and Generate Allure Results
+
+Run your tests from CMD:
+
+npx playwright test
+
+
+This will generate a folder:
+
+allure-results
+
+STEP 5 — Generate HTML Allure Report
+
+Run:
+
+allure generate allure-results --clean -o allure-report
+
+
+Then open the report:
+
+allure open allure-report
+
+
+This opens a beautiful dashboard in your default browser.
+
+🎉 That’s It! You Now Have Allure Reports Working With Playwright
+
+You can repeat these two commands whenever needed:
+
+Run tests
+npx playwright test
+
+Generate & open report
+allure generate allure-results --clean -o allure-report
+allure open allure-report
+
+⭐ Extra Tips (Useful for Data-Driven Tests)
+
+If you want each data-driven test to show custom Allure labels:
+
+import { test } from '@playwright/test';
+import { allure } from 'allure-playwright';
+
+test('Login', async ({ page }) => {
+  allure.label('feature', 'LoginModule');
+  allure.label('severity', 'critical');
+});
+
+
+(Not required, but helps organize reports.)

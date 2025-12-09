@@ -1,0 +1,11 @@
+{
+    "username":"tomsmith",
+    "password":"SuperSecretPassword!",
+    "url":{
+            "herokuapp":"https://the-internet.herokuapp.com",
+            "google":"https://www.google.com/",
+            "flipkart":"https://www.flipkart.com/",
+            "paytm":"https://paytm.com/",
+            "facebook":"https://www.facebook.com/"            
+          }
+}
