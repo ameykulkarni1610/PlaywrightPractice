@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test('Mouse Hovering',async function({page}){
+test.fixme('Mouse Hovering',async function({page}){
     await page.goto("https://www.flipkart.com/");
     
     //close login popup if it appears

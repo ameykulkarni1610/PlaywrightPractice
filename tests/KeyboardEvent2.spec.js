@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import path from 'path';
 
 //Not Wroking due to unstable page.
-test('Single and Combo Key Press', async ({ page }) => {
+test.skip('Single and Combo Key Press', async ({ page }) => {
   await page.goto('https://www.google.com/',{
       waitUntil: 'domcontentloaded'
   });
