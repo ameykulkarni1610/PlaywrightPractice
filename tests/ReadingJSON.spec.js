@@ -1,9 +1,12 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
-import testData from './testdata.json';
+import testData from '../testdata.json';
 
 test('Reading test data from JSON file', async ({ page }) => {
+   // console.log(Object.keys(testData.url));
+   // console.log(testData);
   await page.goto(testData.url.herokuapp);
+  //await page.goto("https://the-internet.herokuapp.com");
   //await page.goto("https://freelance-learn-automation.vercel.app/login");
 
   await page.getByRole('link', {name: 'Form Authentication'}).click();

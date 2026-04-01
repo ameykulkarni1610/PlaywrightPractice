@@ -28,7 +28,7 @@ test('handling Auto Suggestion using keyboard ', async ({ page }) => {
 });
 
 
-test.only('handling Auto-Suggestion Using loop', async ({ page }) => {
+test.skip('handling Auto-Suggestion Using loop', async ({ page }) => {
   await page.goto('https://www.google.com/',{
       waitUntil: 'domcontentloaded'
   });

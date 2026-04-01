@@ -9,7 +9,7 @@ export class HomePage
         //this.logoutoption = "//button[@class='nav-menu-item']";
         this.manageoption = ".nav-menu-item-manage";
         this.logoutoption = "text = Sign out";
-        
+        //this.logoutoption = "//button[normalize-space()='Sign out']"
     }
     
     async verifyManageOption()

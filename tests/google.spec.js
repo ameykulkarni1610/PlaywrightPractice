@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test('Verify Google',async function({page}){
+test('Verify Google Chrome Title',async function({page}){
     
     await page.goto("https://www.google.com");
     
@@ -13,4 +13,6 @@ test('Verify Google',async function({page}){
     console.log("Title is "+ title);
     
     await expect(page).toHaveTitle("Google");
+    
+    await expect(page).toHaveURL("https://www.google.com");
 });

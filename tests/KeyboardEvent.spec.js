@@ -8,7 +8,7 @@ test('Single Key Press', async ({ page }) => {
   await page.getByRole('link', {name: 'Key Presses'}).click();
   
   await page.locator('#target').press('Enter');
-  
+ 
   await page.waitForTimeout(3000);
   
   await page.locator('#target').press('Space');

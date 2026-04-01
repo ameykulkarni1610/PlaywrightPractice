@@ -11,13 +11,13 @@ test.use({
 test('Valid Login',async function({page}){
     await page.goto("https://the-internet.herokuapp.com/login");
     
-    await page.getByLabel('Username').fill('tomsmith');
+    await page.getByLabel('Username').fill('tomsmith', {delay:200});
    // await page.locator("input[name='login']").fill('test@example.com');
     
-    await page.getByLabel('Password').fill('SuperSecretPassword!');
+    await page.getByLabel('Password').fill('SuperSecretPassword!', {delay:200});
     //await page.locator("input[name='password']").fill('test@123');
     
-    //GitHub Button Tag
+    //Submit Button Tag
     await page.locator("//button[@type='submit']").click();
     
    //const url =  await expect(page).toHaveURL("https://the-internet.herokuapp.com/secure");
@@ -25,7 +25,11 @@ test('Valid Login',async function({page}){
    
    console.log("url is " + page.url());
    
-   await page.getByRole('link', { name: 'Logout' }).click();
+   await Promise.all([
+   page.waitForURL("https://the-internet.herokuapp.com/login"),
+   page.getByRole('link', { name: 'Logout' }).click()
+   ]);
+   //await page.getByRole('link', { name: 'Logout' }).click();
    //await page.locator("//a[@href='/logout']").click();
    await expect(page).toHaveURL("https://the-internet.herokuapp.com/login");
     console.log("url is " + page.url());

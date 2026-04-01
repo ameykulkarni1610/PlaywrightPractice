@@ -92,7 +92,7 @@ npx playwright test example
 npx playwright test -g "My fourth test"
     If you want to run test with test name
     
-npx playwright test tests/example.spec.js tests/Dropdown.spe.js
+npx playwright test tests/example.spec.js tests/Dropdown.spec.js
     If you want to run more than one test, but not all of them
     
 npx playwright test tests/example.spec.js --project=chromium
@@ -139,7 +139,7 @@ Headed mode: Real browser window opens, so you can watch interactions
             (clicks, typing, navigation).
             
 package.json - It is main json file of playwright which is used to 
-              upgrade or downgrade versions of playwright, or add any dependdencies
+              upgrade or downgrade versions of playwright, or add any dependencies
               to it.
             
 playwright.config.js - It is the core file of playwright which is used to make project
@@ -156,10 +156,52 @@ codegen - automatic code generator which generates code by recording the
 test() - function to declare test
 
 expect() - function to write assertions
+       
+fixture - A reusable setup source(browser,page, custom test data) that Playwright automatically creates and
+          provides to your tests.
+          It helps manage setup and teardown automatically.
 
+It helps in:
+Setting up things before a test runs
+Cleaning up after the test finishes
+Avoiding repeated setup code
+
+for e.g. - page fixture
 page - a fixture which is an isolated instance of Page class. They are isolated between tests.
        Helps in automating the applications
        
+when you write,
+test('login test', async ({ page }) => {
+  await page.goto('https://example.com');
+});
+
+Playwright automatically:
+1.Launches browser
+2.Creates a new browser context
+3.Creates a new page
+4.Injects page into your test
+5.Closes everything after test ends
+       
+All of this is handled by the fixture system.
+
+Common Built-in Fixtures -
+Fixture	    What it Provides
+browser	    Browser instance
+context	    Isolated browser context
+page	    Single browser tab
+request	    API request context
+
+Without fixtures, you would write 
+
+const browser = await chromium.launch();
+const context = await browser.newContext();
+const page = await context.newPage();
+
+in every test.
+
+Fixtures removes that repetition and manage lifecycle automatically.
+
+
 BeforeHooks - Setup
 AfterHooks - Teardown
 
@@ -179,16 +221,16 @@ page.locator() - helps you locate the elements with CSS Selectors or XPath
         await page.locator("//input[@type='submit']");
         
 const browser = await chromium.launch({headless: false}); // use this line for raw playwright script.
-In such case, yu have to handle the browser manually.
+In such case, you have to handle the browser manually.
 for e.g. directly using async await without using test() function.
 or,
 const {chromium} = require('@playwright/test');
 (async () => {
 const broswer = await chromium.launch();
 
-navigation timeout is different than test timout.
+navigation timeout is different than test timeout.
 navigation timeout controls methods like,
-page.goto
+page.goto()
 page.click()
 page.waitForURL(); ,etc
 
@@ -231,7 +273,7 @@ And workers = 2.
 Worker 1 → login.spec.js, dashboard.spec.js
 Worker 2 → signup.spec.js, logout.spec.js
 
-If you have odd number of test or workers, then Playwright uses parallel sceduling.
+If you have odd number of test or workers, then Playwright uses parallel scheduling.
 for e.g. If you have 2 workers and 11 tests, then 
 
 🔄 Playwright assigns tests dynamically (one by one)
@@ -394,6 +436,11 @@ Also, you cannot select a dropdown option like clicking normal HTML element
 using getByText(). You have to use SelectOptions() method here.
 for e.g.
 await page.locator('#dropdown').selectOption({value:"1"});
+
+While selecting dropdown,order of preference should be
+1.label
+2.value
+3.index
 
 ------------------------------------------------------------------------------------------
 
@@ -610,7 +657,7 @@ await innerFrame.getByText("Open Paytm App").click();
 
 Context -
 
-context is an spearate isolated environment used for browsing,
+context is an separate isolated environment used for browsing,
 has multiple pages, its own cookies, browser specific data.
 You can make changes withing than context.
 
